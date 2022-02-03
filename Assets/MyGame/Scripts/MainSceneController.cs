@@ -3,51 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class MainSceneController : MonoBehaviour
 {
     [SerializeField] private InputField InputFieldEingabe1, InputFieldEingabe2;
-    [SerializeField] private Text txtResult;
-    public bool testing;
+    [SerializeField] private Text textResult;
+    [SerializeField] private GameObject resetBtn;
+    private int termA, termB;
 
-    public int  CheckAddition(int summandA, int summandB)
+
+
+
+
+    public int CheckAddition(int summandA, int summandB)
     {
         int result = 0;
-        testing = false;
+
+
         result = summandA + summandB;
-        Debug.Log(result);
+
+
+        textResult.text = string.Format("{0}", result);
 
         return result;
     }
 
-    void Start()
-    {
-        int val1=CheckAddition(1, 2);
-        int val2=CheckAddition(10, 20); 
-        int val3=CheckAddition(100, 200);
 
-        Debug.Log("val1: " + val1 + "val2 + val3" + (val1 + val2));
-        Debug.Log("Nach Methodenaufruf sg. call");
-
-       
-    }
 
     public void GetValues()
     {
-        string eingabe1, eingabe2;
-        eingabe1 = InputFieldEingabe1.text; 
-        eingabe2 = InputFieldEingabe2.text;
+        try
+        {
+            termA = int.Parse(InputFieldEingabe1.text);
+        }
+        catch (System.Exception)
+        {
+            InputFieldEingabe1.GetComponent<InputField>().image.color = Color.red;
+            InputFieldEingabe1.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte gültige Zahl eingeben.";
+            InputFieldEingabe1.text = "";
+        }
 
-        Debug.Log("Methode GetValues wird ausgeführt: " + CheckAddition(int.Parse(eingabe1), int.Parse(eingabe2)));
+        try
+        {
+            termB = int.Parse(InputFieldEingabe2.text);
+        }
+        catch (System.Exception)
+        {
+            InputFieldEingabe2.GetComponent<InputField>().image.color = Color.red;
+            InputFieldEingabe2.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Bitte gültige Zahl eingeben.";
+            InputFieldEingabe2.text = "";
+        }
+        termA = int.Parse(InputFieldEingabe1.text);
+        termB = int.Parse(InputFieldEingabe2.text);
 
+        textResult.text = CheckAddition(termA, termB).ToString();
+
+
+        Debug.Log("Methode GetValues wird ausgeführt:" + CheckAddition(termA, termB));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ResetBtn()
     {
-        if (testing)
-        {
-            GetValues();
-        }
-      
-    }    
+
+        InputFieldEingabe1.text = "";
+        InputFieldEingabe2.text = "";
+        textResult.text = "result";
+        termA = 0;
+        termB = 0;
+        InputFieldEingabe1.GetComponent<InputField>().image.color = Color.white;
+        InputFieldEingabe2.GetComponent<InputField>().image.color = Color.white;
+        InputFieldEingabe1.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Ganze Zahl eingeben...";
+        InputFieldEingabe2.GetComponent<InputField>().placeholder.GetComponent<Text>().text = "Ganze Zahl eingeben...";
+    }
+
+
 }
+

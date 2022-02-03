@@ -1582,8 +1582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputFieldEingabe1: {fileID: 1174671582}
   InputFieldEingabe2: {fileID: 1828623961}
-  txtResult: {fileID: 2073962277}
-  testing: 0
+  textResult: {fileID: 2073962277}
+  resetBtn: {fileID: 397712106}
 --- !u!4 &2072914866
 Transform:
   m_ObjectHideFlags: 0
