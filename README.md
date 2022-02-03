@@ -7,6 +7,7 @@ Entwicklungsplattform:
 
 Windows 11, Unity 2020.1.18f1, Visual Studios (Version 2019 Community)
 Zielplattform:
+https://3ahmns2122mtin.github.io/11mseiringer_KinderAddiererConsole/
 
 WebGL Referenzauflösung (960x600)
 Visuelle Einblicke in das Projekt:
